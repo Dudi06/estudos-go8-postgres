@@ -55,10 +55,10 @@ func (r *Repository) DeleteBook(context *fiber.Ctx) error {
 		return nil
 	}
 
-	err := r.DB.Delete(&bookModel, id)
+	err := r.DB.Delete(bookModel, id)
 
-	if err != nil {
-		context.Status(http.StatusInternalServerError).JSON(&fiber.Map{
+	if err.Error != nil {
+		context.Status(http.StatusBadRequest).JSON(&fiber.Map{
 			"message": "could not delete book",
 		})
 		return err.Error
@@ -128,7 +128,7 @@ func main() {
 	config := &storage.Config{
 		Host:     os.Getenv("DB_HOST"),
 		Port:     os.Getenv("DB_PORT"),
-		Password: os.Getenv("DB_PASSWORD"),
+		Password: os.Getenv("DB_PASS"),
 		User:     os.Getenv("DB_USER"),
 		SSLMode:  os.Getenv("DB_SSLMODE"),
 		DBName:   os.Getenv("DB_NAME"),
