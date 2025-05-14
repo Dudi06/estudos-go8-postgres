@@ -3,10 +3,10 @@ package models
 import "gorm.io/gorm"
 
 type Books struct {
-	ID        uint    `gorm:"primaryKey;autoIncrement" json:"id"`
-	Author    *string `json:"author"`
-	Title     *string `json:"title"`
-	Publisher *string `json:"publisher"`
+	ID      uint    `gorm:"primaryKey;autoIncrement" json:"id"`
+	Autor   *string `json:"autor"`
+	Título  *string `json:"titulo"`
+	Editora *string `json:"editora"`
 }
 
 func MigrateBooks(db *gorm.DB) error {
